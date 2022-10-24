@@ -1,5 +1,7 @@
 package site.metacoding.junitproject.domain;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -13,7 +15,20 @@ public class BookRepositoryTest {
     //1. 책등록
     @Test
     public void 책등록_test(){
-        System.out.println("책등록_test실행");
+        // given(데이터 준비)
+        String title = "junit5";
+        String author = "메타코딩";
+        Book book = Book.builder()
+                    .title(title)
+                    .author(author)
+                    .build();
+
+        // when(테스트 실행)
+        Book bookPs = bookRepository.save(book);
+
+        // then(검증)
+        assertEquals(title, bookPs.getTitle());
+        assertEquals(author, bookPs.getAuthor());
     }
 
     //2. 책 목록보기
