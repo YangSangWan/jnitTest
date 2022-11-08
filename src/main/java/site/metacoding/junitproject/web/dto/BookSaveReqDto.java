@@ -1,4 +1,4 @@
-package web.dto;
+package site.metacoding.junitproject.web.dto;
 
 import lombok.Setter;
 import site.metacoding.junitproject.domain.Book;

@@ -1,4 +1,4 @@
-package web;
+package site.metacoding.junitproject.web;
 
 import org.springframework.web.bind.annotation.RestController;
 
