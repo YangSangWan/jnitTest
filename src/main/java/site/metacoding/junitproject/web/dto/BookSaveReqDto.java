@@ -1,8 +1,10 @@
 package site.metacoding.junitproject.web.dto;
 
+import lombok.Getter;
 import lombok.Setter;
 import site.metacoding.junitproject.domain.Book;
 
+@Getter
 @Setter //컨트롤러에서 Setter가 호출되면서Dto에 값이 채워짐.
 public class BookSaveReqDto {
     private String title;
