@@ -1,5 +1,8 @@
 package site.metacoding.junitproject.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -24,6 +27,12 @@ public class BookService {
     }
 
     // 2. 책 목록보기
+    public List<BookRespDto> 책목록보기(){
+        return bookRepository.findAll().stream()
+        .map(new BookRespDto()::toDto)
+        .collect(Collectors.toList());
+        
+    }
 
     // 3. 책한건보기
 
