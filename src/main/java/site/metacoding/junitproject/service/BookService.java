@@ -12,8 +12,9 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.junitproject.domain.Book;
 import site.metacoding.junitproject.domain.BookRepository;
-import site.metacoding.junitproject.util.MailSenderStub;
+import site.metacoding.junitproject.util.MailSenderAdapter;
 import site.metacoding.junitproject.web.dto.request.BookSaveReqDto;
+import site.metacoding.junitproject.web.dto.response.BookListRespDto;
 import site.metacoding.junitproject.web.dto.response.BookRespDto;
 
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ import site.metacoding.junitproject.web.dto.response.BookRespDto;
 public class BookService {
 
     private final BookRepository bookRepository;
-    private final MailSenderStub mailSender;
+    private final MailSenderAdapter mailSender;
     
     // 1. 책등록
     @Transactional(rollbackOn = RuntimeException.class) //RuntimeException가 발생하면 롤백
@@ -36,11 +37,15 @@ public class BookService {
     }
 
     // 2. 책 목록보기
-    public List<BookRespDto> 책목록보기(){
-        return bookRepository.findAll().stream()
+    public BookListRespDto 책목록보기(){
+        List<BookRespDto> dtos = bookRepository.findAll().stream()
         //.map((bookPS) -> new BookRespDto().toDto(bookPS))
         .map(Book::toDto)
         .collect(Collectors.toList());
+
+        BookListRespDto bookListRespDto = BookListRespDto.builder().bookList(dtos).build();
+        return bookListRespDto;
+        
         
     }
 

@@ -13,6 +13,7 @@ public class MailSenderAdapter implements MailSender{
     
     @Override
     public boolean send(){
-        return true;
+        return mail.sendMail();
+        //return true;
     }
 }

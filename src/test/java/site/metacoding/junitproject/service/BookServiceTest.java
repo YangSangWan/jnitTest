@@ -21,8 +21,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import site.metacoding.junitproject.domain.Book;
 import site.metacoding.junitproject.domain.BookRepository;
 import site.metacoding.junitproject.util.MailSender;
-import site.metacoding.junitproject.util.MailSenderStub;
 import site.metacoding.junitproject.web.dto.request.BookSaveReqDto;
+import site.metacoding.junitproject.web.dto.response.BookListRespDto;
 import site.metacoding.junitproject.web.dto.response.BookRespDto;
 
 @ExtendWith(MockitoExtension.class) //가짜 메모리 환경
@@ -71,12 +71,12 @@ public class BookServiceTest {
         when(bookRepository.findAll()).thenReturn(books);
 
         //when
-        List<BookRespDto> dtos = bookService.책목록보기();
+        BookListRespDto bookListRespDto = bookService.책목록보기();
 
         //then
-        assertEquals(dtos.get(0).getTitle(), "junit강의");
-        System.out.println(dtos.get(0).getTitle());
-        System.out.println(dtos.get(1).getTitle());
+        assertEquals(bookListRespDto.getItems().get(0).getTitle(), "junit강의");
+        System.out.println(bookListRespDto.getItems().get(1).getTitle());
+        System.out.println(bookListRespDto.getItems().get(2).getTitle());
     }
 
     @Test

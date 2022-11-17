@@ -2,12 +2,13 @@ package site.metacoding.junitproject.util;
 
 import org.springframework.stereotype.Component;
 
-@Component
-public class MailSenderStub implements MailSender{
+//가짜!
+// @Component
+// public class MailSenderStub implements MailSender{
 
-    @Override
-    public boolean send() {
-        return true;
-    }
+//     @Override
+//     public boolean send() {
+//         return true;
+//     }
     
-}
+// }
